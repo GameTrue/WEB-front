@@ -31,10 +31,22 @@ nav ul {
 	justify-content: right;
 }
 
-nav a {
+nav li {
+	width: auto;
+	height: 30px;
+	padding: 5px 10px;
+	background-color: #3333330f;
+	border-radius: 10px;
+	text-align: center;
+	line-height: 20px;
     text-decoration: none;
     color: #000;
     font-weight: bold;
+	cursor: pointer;
+}
+
+nav .active-link {
+	background-color: #33333345;
 }
 
 .auth-buttons {
