@@ -24,6 +24,10 @@ header {
     max-width: 50px;
 }
 
+nav {
+    margin: auto 50px auto auto;
+}
+
 nav ul {
     list-style: none;
     display: flex;
@@ -31,14 +35,18 @@ nav ul {
 	justify-content: right;
 }
 
+nav a {
+	text-decoration: none;
+}
+
 nav li {
 	width: auto;
-	height: 30px;
+	height: 25px;
 	padding: 5px 10px;
 	background-color: #3333330f;
 	border-radius: 10px;
 	text-align: center;
-	line-height: 20px;
+	line-height: 15px;
     text-decoration: none;
     color: #000;
     font-weight: bold;
@@ -52,6 +60,7 @@ nav .active-link {
 .auth-buttons {
     display: flex;
     gap: 10px;
+	border-radius: 10px;
 }
 
 button {
@@ -68,11 +77,13 @@ button {
 .login-btn {
     background-color: #ccc;
     color: #000;
+	font-weight: 700;
 }
 
 .register-btn {
     background-color: #333;
     color: #fff;
+	font-weight: 700;
 }
 
 .main-content {
@@ -89,17 +100,22 @@ button {
 .main-subcontent {
     display: flex;
     justify-content: left;
-    margin-left: 100px;
+    width: 300px;
 }
 
 .main-content-container {
-    width: 650px;
+    width: 510px;
     margin: auto;
+	display: flex;
+    flex-wrap: wrap;
 }
 
 .main-content span {
     font-size: 1.5rem;
     color: #aaa;
+	overflow: hidden;
+	display: -webkit-box;
+	-webkit-line-clamp: 3;	
 }
 
 .main-buttons {
@@ -109,18 +125,21 @@ button {
     flex-wrap: wrap;
     align-items: flex-end;
     gap: 10px;
+	margin-left: 10px;
 }
 
 .button-blue {
     background-color: #007bff;
     color: #fff;
 	border-radius: 30px;
+    width: 200px;
 }
 
 .button-purple {
     background-color: #6f42c1;
     color: #fff;
 	border-radius: 30px;
+    width: 200px;
 }
 
 .main-media-section {
@@ -178,6 +197,10 @@ button {
 	flex-direction: row;
 	align-items: center;
 	justify-content:space-evenly;
+}
+
+.main-media-links h2 {
+	font-size: 2.5rem;
 }
 
 .media-content {
