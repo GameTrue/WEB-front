@@ -273,6 +273,7 @@ footer {
 	width: 50%;
 	height: 300px;
     background-color: var(--color-footer-left);
+    padding: 20px;
 }
 
 .right-contact {
