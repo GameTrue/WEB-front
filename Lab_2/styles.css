@@ -92,6 +92,10 @@ button {
 	border-radius: 10px;
 }
 
+.main-button:hover {
+	filter: brightness(90%);
+}
+
 .login-btn {
     background-color: var(--color-grey-light);
     color: var(--color-text-dark);
