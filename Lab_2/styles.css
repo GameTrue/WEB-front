@@ -182,15 +182,15 @@ button {
 .main-media-crop img {
 	width: 300px;
 	height: 300px;
-	transition: ease 0.5s;
+	transition: ease 0.4s;
 }
 
 .main-media-crop img:hover {
-	width: 350px;
-	height: 350px;
-	margin-top: -25px;
-	margin-left: -25px;
-	transition: ease 0.5s;
+	width: 330px;
+	height: 330px;
+	margin-top: -15px;
+	margin-left: -15px;
+	transition: ease 0.4s;
 }
 
 .main-media-content {
@@ -277,6 +277,20 @@ footer {
 	width: 60px; 
 	height: 60px; 
 	border-radius: 50px;
+	overflow: hidden;
+	cursor: pointer;
+}
+
+.main-media-container .temp img {
+	width: 60px;
+	transition: ease 0.2s;
+}
+
+.main-media-container .temp img:hover {
+	width: 66px;
+	margin-top: -3px;
+	margin-left: -3px;
+	transition: ease 0.2s;
 }
 
 .font-ital {
