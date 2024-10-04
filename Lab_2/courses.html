@@ -11,6 +11,7 @@
 	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 	<link href="https://fonts.googleapis.com/css2?family=Gabarito:wght@400..900&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="styles.css">
+	<script type="text/javascript" src="./templateLoader.js"></script>
 </head>
 <body>
 
@@ -54,7 +55,6 @@
 					<div class="course-card">Course 7</div>
 					<div class="course-card">Course 8</div>
 				</div>
-                <!-- Добавьте больше блоков по необходимости -->
             </section>
         </div>
     </main>
@@ -62,54 +62,16 @@
     <!-- Здесь будет динамически подгружен footer -->
     <footer id="footer-placeholder"></footer>
 
-	<!-- JavaScript для подгрузки шаблонов -->
-    <script>
-        // Функция для подгрузки фрагментов
-        function loadFragment(fragmentId, url, callback) {
-            fetch(url)
-                .then(response => response.text())
-                .then(data => {
-                    document.getElementById(fragmentId).innerHTML = data;
-                    if (callback) callback(); // Вызов callback после загрузки
-                })
-                .catch(error => console.error('Ошибка загрузки фрагмента:', error));
-        }
-
-        // Подгрузка header и footer
-        loadFragment('header-placeholder', 'header.html', setActiveLink);
-        loadFragment('footer-placeholder', 'footer.html');
-
-
-		// Функция для установки класса active-link на активную страницу
-        function setActiveLink() {
-            const path = window.location.pathname;
-			// Извлекаем последний элемент пути (название страницы)
-			const page = path.substring(path.lastIndexOf('/') + 1);
-            const menuItems = document.querySelectorAll('nav a');
-
-            menuItems.forEach(link => {
-                // Сравниваем ссылку с текущим URL
-				console.log(link.getAttribute('href'), path)
-                if (link.getAttribute('href') === page) {
-                    link.querySelector('li').classList.add('active-link');
-                }
-            });
-        }
-    </script>
 
 	<!-- JavaScript для обработки формы -->
     <script>
-        // Получаем элементы формы и кнопки
         const form = document.getElementById('filter-form');
         const submitBtn = document.getElementById('submit-btn');
 
-        // Обработчик события на кнопку
         submitBtn.addEventListener('click', function() {
-            // Получаем значения полей формы
             const category = document.getElementById('category').value;
             const level = document.getElementById('level').value;
 
-            // Выводим значения в консоль
             console.log('Выбранная категория:', category);
             console.log('Выбранный уровень:', level);
         });

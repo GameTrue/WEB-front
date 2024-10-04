@@ -11,6 +11,7 @@
 	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 	<link href="https://fonts.googleapis.com/css2?family=Gabarito:wght@400..900&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="styles.css">
+	<script type="text/javascript" src="./templateLoader.js"></script>
 </head>
 <body>
 
@@ -65,39 +66,31 @@
     <!-- Здесь будет динамически подгружен footer -->
     <footer id="footer-placeholder"></foooter>
 
-	<!-- JavaScript для подгрузки шаблонов -->
+
+    <!-- Скрипт для получения и вывода данных о производительности -->
     <script>
-        // Функция для подгрузки фрагментов
-        function loadFragment(fragmentId, url, callback) {
-            fetch(url)
-                .then(response => response.text())
-                .then(data => {
-                    document.getElementById(fragmentId).innerHTML = data;
-                    if (callback) callback(); // Вызов callback после загрузки
-                })
-                .catch(error => console.error('Ошибка загрузки фрагмента:', error));
-        }
+        (function() {
+            window.addEventListener('load', function() {
+                const timing = performance.timing;
 
-        // Подгрузка header и footer
-        loadFragment('header-placeholder', 'header.html', setActiveLink);
-        loadFragment('footer-placeholder', 'footer.html');
+                const pageLoadTime = timing.loadEventEnd - timing.loadEventStart; // Время полной загрузки страницы
+                const domContentLoadedTime = timing.domContentLoadedEventEnd - timing.domContentLoadedEventStart; // Время до DOMContentLoaded
+                const responseTime = timing.responseEnd - timing.requestStart; // Время отклика сервера
+                const connectTime = timing.connectEnd - timing.connectStart; // Время установки соединения
+                const dnsTime = timing.domainLookupEnd - timing.domainLookupStart; // Время разрешения DNS
 
+                const stats = `
+                    <p>Полное время загрузки страницы: <strong>${pageLoadTime} мс</strong></p>
+                    <p>Время до события DOMContentLoaded: <strong>${domContentLoadedTime} мс</strong></p>
+                    <p>Время отклика сервера: <strong>${responseTime} мс</strong></p>
+                    <p>Время установки соединения: <strong>${connectTime} мс</strong></p>
+                    <p>Время разрешения DNS: <strong>${dnsTime} мс</strong></p>
+                `;
 
-		// Функция для установки класса active-link на активную страницу
-        function setActiveLink() {
-            const path = window.location.pathname;
-			// Извлекаем последний элемент пути (название страницы)
-			const page = path.substring(path.lastIndexOf('/') + 1);
-            const menuItems = document.querySelectorAll('nav a');
-
-            menuItems.forEach(link => {
-                // Сравниваем ссылку с текущим URL
-				console.log(link.getAttribute('href'), path)
-                if (link.getAttribute('href') === page) {
-                    link.querySelector('li').classList.add('active-link');
-                }
+                const performanceDiv = document.getElementById('performance-info');
+                performanceDiv.innerHTML += stats;
             });
-        }
+        })();
     </script>
 
 </body>
