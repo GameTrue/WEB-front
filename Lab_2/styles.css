@@ -171,11 +171,26 @@ button {
 	margin: 15px;
 }
 
-.main-media-content img {
+.main-media-crop {
 	width: 300px;
 	height: 300px;
 	border-radius: 20px;
+	overflow: hidden;
     filter: drop-shadow(6px 7px 12px);
+}
+
+.main-media-crop img {
+	width: 300px;
+	height: 300px;
+	transition: ease 0.5s;
+}
+
+.main-media-crop img:hover {
+	width: 350px;
+	height: 350px;
+	margin-top: -25px;
+	margin-left: -25px;
+	transition: ease 0.5s;
 }
 
 .main-media-content {
@@ -370,5 +385,6 @@ footer {
     border-radius: 10px;
     text-align: center;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+	cursor: pointer;
 }
 
