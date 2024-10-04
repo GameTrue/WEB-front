@@ -39,7 +39,7 @@
                     </select>
                 </form>
 
-				<button type="submit" class="filter-button">Применить</button>
+				<button type="submit" class="filter-button" id="submit-btn">Применить</button>
             </aside>
 
             <section class="courses">
@@ -49,6 +49,10 @@
 					<div class="course-card">Course 2</div>
 					<div class="course-card">Course 3</div>
 					<div class="course-card">Course 4</div>
+					<div class="course-card">Course 5</div>
+					<div class="course-card">Course 6</div>
+					<div class="course-card">Course 7</div>
+					<div class="course-card">Course 8</div>
 				</div>
                 <!-- Добавьте больше блоков по необходимости -->
             </section>
@@ -93,6 +97,23 @@
         }
     </script>
 
+	<!-- JavaScript для обработки формы -->
+    <script>
+        // Получаем элементы формы и кнопки
+        const form = document.getElementById('filter-form');
+        const submitBtn = document.getElementById('submit-btn');
+
+        // Обработчик события на кнопку
+        submitBtn.addEventListener('click', function() {
+            // Получаем значения полей формы
+            const category = document.getElementById('category').value;
+            const level = document.getElementById('level').value;
+
+            // Выводим значения в консоль
+            console.log('Выбранная категория:', category);
+            console.log('Выбранный уровень:', level);
+        });
+    </script>
 
 </body>
 </html>

@@ -274,7 +274,7 @@ footer {
     display: flex;
     padding: 20px;
 	min-height: 700px;
-	background-color: var(--color-grey-light);
+	background-color: var(--color-background-light);
 }
 
 /* Стили для колонки фильтров */
@@ -283,16 +283,17 @@ footer {
     flex: 1;
     max-width: 300px;
     padding: 20px;
-    background-color: var(--color-media-bg);
+    background-color: var(--color-background-light);
     border-radius: 10px;
 	height: fit-content;
     flex-direction: column;
     align-items: center;
+    color: var(--color-text-dark);
+    filter: drop-shadow(6px 7px 10px);
 }
 
 .filter-column h2 {
     margin-bottom: 15px;
-    color: #fff;
 }
 
 .filter-column form label {
@@ -302,27 +303,53 @@ footer {
 
 .filter-button {
 	color: var(--color-grey-dark);
-	background-color: var(--color-text-light);
+	background-color: var(--color-media-bg);
 	border-radius: 20px;
 	margin: 20px auto auto auto;
 	width: 80%;
 	min-width: 120px;
 }
 
+.filter-button:hover {
+	background-color: var(--color-grey-light);
+}
+
+.filter-button:active {
+	filter: brightness(80%);
+}
+
 .filter-column form {
 	width: 90%;
+	color: var(--color-media-text);
 }
 
 .filter-column form select {
     width: 100%;
+	min-width: 160px;
     padding: 10px;
     margin-bottom: 15px;
-    border-radius: 5px;
+    border-radius: 10px;
+	color: var(--color-grey-dark);
+	background-color: var(--color-grey-light);
+	border: none;
+}
+
+.filter-column form select:hover {
+	filter: brightness(95%);
+}
+
+.filter-column form select option::before {
+	border-radius: 10px;
 }
 
 .courses {
 	width: 80%;
 	padding: 20px;
+}
+
+.courses h2 {
+	color: var(--color-text-dark);
+	margin-left: 5%;
 }
 
 /* Сетка курсов */
