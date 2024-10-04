@@ -57,6 +57,7 @@ nav a {
 	text-decoration: none;
 }
 
+
 nav li {
 	width: auto;
 	height: 25px;
@@ -75,6 +76,10 @@ nav .active-link {
 	background-color: #33333345;
 }
 
+nav li:hover {
+	filter: opacity(50%)
+}
+
 .auth-buttons {
     display: flex;
     gap: 10px;
@@ -82,7 +87,7 @@ nav .active-link {
 }
 
 button {
-    padding: 10px 20px;
+    padding: 8px 20px;
     border: none;
     cursor: pointer;
     font-size: 1rem;
@@ -352,7 +357,8 @@ footer {
 }
 
 .filter-column form {
-	width: fit-content;
+	width: 90%;
+	min-width: fit-content;
 	color: var(--color-media-text);
 }
 
