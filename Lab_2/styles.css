@@ -1,3 +1,21 @@
+/* Variables */
+:root {
+    --color-background-dark: #181818;
+    --color-background-light: #fff;
+    --color-text-light: #fff;
+    --color-text-dark: #000;
+    --color-grey-light: #ccc;
+    --color-grey-dark: #333;
+    --color-blue: #007bff;
+    --color-purple: #6f42c1;
+    --color-media-bg: #ddd;
+    --color-media-text: #464646;
+    --color-footer-left: #3d3d3d;
+    --color-footer-right: #212121;
+    --color-temp-bg: #404040;
+    --color-media-container-bg: rgba(68, 68, 68, 0.28);
+}
+
 * {
     margin: 0;
     padding: 0;
@@ -16,8 +34,8 @@ header {
     justify-content: space-between;
     align-items: center;
     padding: 20px;
-    background-color: #fff;
-    color: #000;
+    background-color: var(--color-background-light);
+    color: var(--color-text-dark);
 }
 
 .logo img {
@@ -48,7 +66,7 @@ nav li {
 	text-align: center;
 	line-height: 15px;
     text-decoration: none;
-    color: #000;
+    color: var(--color-text-dark);
     font-weight: bold;
 	cursor: pointer;
 }
@@ -75,21 +93,21 @@ button {
 }
 
 .login-btn {
-    background-color: #ccc;
-    color: #000;
+    background-color: var(--color-grey-light);
+    color: var(--color-text-dark);
 	font-weight: 700;
 }
 
 .register-btn {
-    background-color: #333;
-    color: #fff;
+    background-color: var(--color-grey-dark);
+    color: var(--color-text-light);
 	font-weight: 700;
 }
 
 .main-content {
     text-align: center;
     padding: 100px 20px;
-    background-color: #000;
+    background-color: var(--color-text-dark);
 }
 
 .main-content h1 {
@@ -129,23 +147,23 @@ button {
 }
 
 .button-blue {
-    background-color: #007bff;
-    color: #fff;
+    background-color: var(--color-blue);
+    color: var(--color-text-light);
 	border-radius: 30px;
     width: 200px;
 }
 
 .button-purple {
-    background-color: #6f42c1;
-    color: #fff;
+    background-color: var(--color-purple);
+    color: var(--color-text-light);
 	border-radius: 30px;
     width: 200px;
 }
 
 .main-media-section {
     padding: 10px;
-    background-color: #fff;
-    color: #000;
+    background-color: var(--color-background-light);
+    color: var(--color-text-dark);
     text-align: center;
 }
 
@@ -169,7 +187,7 @@ button {
 }
 
 .main-media-box {
-    background-color: #ddd;
+    background-color: var(--color-media-bg);
     padding: 20px;
     border-radius: 10px;
     width: 300px;
@@ -183,7 +201,7 @@ button {
 }
 
 .main-media-box p {
-	color: #464646;
+    color: var(--color-media-text);
 	font-size: 1rem;
 	font-weight: 700;
 }
@@ -230,17 +248,17 @@ footer {
 .left-contact {
 	width: 50%;
 	height: 300px;
-	background-color: #3d3d3d;
+    background-color: var(--color-footer-left);
 }
 
 .right-contact {
 	width: 50%;
 	height: 300px;
-	background-color: #212121;
+    background-color: var(--color-footer-right);
 }
 
 .temp {
-	background-color: #404040; 
+    background-color: var(--color-temp-bg);
 	width: 60px; 
 	height: 60px; 
 	border-radius: 50px;
@@ -249,3 +267,81 @@ footer {
 .font-ital {
 	font-style: italic;
 }
+
+
+/* Общие стили для контейнера страницы */
+.container {
+    display: flex;
+    padding: 20px;
+	min-height: 700px;
+	background-color: var(--color-grey-light);
+}
+
+/* Стили для колонки фильтров */
+.filter-column {
+	display: flex;
+    flex: 1;
+    max-width: 300px;
+    padding: 20px;
+    background-color: var(--color-media-bg);
+    border-radius: 10px;
+	height: fit-content;
+    flex-direction: column;
+    align-items: center;
+}
+
+.filter-column h2 {
+    margin-bottom: 15px;
+    color: #fff;
+}
+
+.filter-column form label {
+    display: block;
+    margin: 10px 0 5px;
+}
+
+.filter-button {
+	color: var(--color-grey-dark);
+	background-color: var(--color-text-light);
+	border-radius: 20px;
+	margin: 20px auto auto auto;
+	width: 80%;
+	min-width: 120px;
+}
+
+.filter-column form {
+	width: 90%;
+}
+
+.filter-column form select {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 15px;
+    border-radius: 5px;
+}
+
+.courses {
+	width: 80%;
+	padding: 20px;
+}
+
+/* Сетка курсов */
+.courses-grid {
+    flex: 3;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 20px;
+    padding: 20px;
+}
+
+.course-card {
+    background-color: #444;
+    color: white;
+	height: 200px;
+	min-width: 200px;
+    padding: 20px;
+    border-radius: 10px;
+    text-align: center;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
