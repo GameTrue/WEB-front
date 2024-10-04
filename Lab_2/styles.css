@@ -334,7 +334,7 @@ footer {
 }
 
 .filter-column form {
-	width: 90%;
+	width: fit-content;
 	color: var(--color-media-text);
 }
 
