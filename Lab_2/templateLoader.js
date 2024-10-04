@@ -1,3 +1,5 @@
+// JavaScript для подгрузки шаблонов и динамического добавления active-link
+
 function loadFragment(fragmentId, url, callback) {
 	fetch(url)
 		.then(response => response.text())
