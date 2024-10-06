@@ -477,19 +477,19 @@ footer {
 }
 
 .course-card.beginner:hover {
-	background: linear-gradient(390deg, green, #444444a9 50%),
+	background: linear-gradient(390deg, rgb(0, 168, 0), #444444a9 60%),
 	url("https://i.imgur.com/RFC1yMt.png");
 	transition: ease 5s;
 	background-size: 100%;
 }
 .course-card.intermediate:hover {
-	background: linear-gradient(390deg, rgb(170, 125, 27), #444444a9 50%),
+	background: linear-gradient(390deg, rgb(225, 162, 26), #444444a9 60%),
 	url("https://i.imgur.com/VeQJzgz.png");
 	transition: ease 5s;
 	background-size: 100%;
 }
 .course-card.advanced:hover {
-	background: linear-gradient(390deg, rgb(152, 16, 16), #444444a9 50%),
+	background: linear-gradient(390deg, rgb(192, 16, 16), #444444a9 60%),
 	url("https://i.imgur.com/B5ecc76.jpeg");
 	transition: ease 5s;
 	background-size: 100%;
