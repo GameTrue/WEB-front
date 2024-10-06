@@ -1,3 +1,33 @@
+@property --myBegin1 {
+	syntax: '<color>';
+	initial-value: rgb(0, 128, 0);
+	inherits: false;
+}
+
+@property --myBegin2 {
+	syntax: '<color>';
+	initial-value: rgb(170, 125, 27);
+	inherits: false;
+}
+
+@property --myBegin3 {
+	syntax: '<color>';
+	initial-value: rgb(152, 16, 16);
+	inherits: false;
+}
+
+@property --myTransp {
+	syntax: '<color>';
+	initial-value: #444444d8;
+	inherits: false;
+}
+
+@property --mySize {
+	syntax: '<percentage>';
+	initial-value: 100%;
+	inherits: false;
+}
+
 /* Variables */
 :root {
     --color-background-dark: #181818;
@@ -14,6 +44,16 @@
     --color-footer-right: #212121;
     --color-temp-bg: #404040;
     --color-media-container-bg: rgba(68, 68, 68, 0.28);
+
+	
+	--begin1: rgb(0, 128, 0);
+	--begin2: rgb(170, 125, 27);
+	--begin3: rgb(152, 16, 16);
+	--transp: #444444d8;
+	--end1: rgb(0, 168, 0);
+	--end2: rgb(225, 162, 26);
+	--end3: rgb(192, 16, 16);
+	--endTransp: #444444a9;
 }
 
 * {
@@ -456,43 +496,61 @@ footer {
 }
 
 .course-card.beginner {
-	background: linear-gradient(390deg, green, #444444d8 60%),
+	/*background: linear-gradient(390deg, rgb(0, 168, 0), #444444d8 60%),
 	url("https://i.imgur.com/RFC1yMt.png");
-	transition: ease 5s;
-	background-size: 100%;
+	transition: ease 5s;*/
+	background: linear-gradient(390deg, var(--myBegin1), var(--myTransp) 60%),
+	url("https://i.imgur.com/RFC1yMt.png");
+	background-size: var(--mySize);
+	transition: --myBegin1 0.4s, --myTransp 0.4s, --mySize 0.4s;
 }
 
 .course-card.intermediate {
-	background: linear-gradient(390deg, rgb(170, 125, 27), #444444d8 60%),
+	/* background: linear-gradient(390deg, rgb(170, 125, 27), #444444d8 60%),
 	url("https://i.imgur.com/VeQJzgz.png");
-	transition: ease 5s;
-	background-size: 100%;
+	transition: ease 5s; */
+	background: linear-gradient(390deg, var(--myBegin2), var(--myTransp) 60%),
+	url("https://i.imgur.com/VeQJzgz.png");
+	background-size: var(--mySize);
+	transition: --myBegin2 0.4s, --myTransp 0.4s, --mySize 0.4s;
 }
 
 .course-card.advanced {
-	background: linear-gradient(390deg, rgb(152, 16, 16), #444444d8 60%),
+	/* background: linear-gradient(390deg, rgb(152, 16, 16), #444444d8 60%),
 	url("https://i.imgur.com/B5ecc76.jpeg");
-	transition: ease 5s;
-	background-size: 100%;
+	transition: ease 5s; */
+	background: linear-gradient(390deg, var(--myBegin3), var(--myTransp) 60%),
+	url("https://i.imgur.com/B5ecc76.jpeg");
+	background-size: var(--mySize);
+	transition: --myBegin3 0.4s, --myTransp 0.4s, --mySize 0.4s;
 }
 
 .course-card.beginner:hover {
-	background: linear-gradient(390deg, rgb(0, 168, 0), #444444a9 60%),
-	url("https://i.imgur.com/RFC1yMt.png");
-	transition: ease 5s;
-	background-size: 100%;
-}
-.course-card.intermediate:hover {
-	background: linear-gradient(390deg, rgb(225, 162, 26), #444444a9 60%),
+	/*background: linear-gradient(390deg, rgb(0, 168, 0), #444444a9 60%),
 	url("https://i.imgur.com/VeQJzgz.png");
 	transition: ease 5s;
-	background-size: 100%;
+	background-size: 100%;*/
+	--myBegin1: var(--end1);
+	--myTransp: var(--endTransp);
+	--mySize: 105%
+}
+.course-card.intermediate:hover {
+	/* background: linear-gradient(390deg, rgb(225, 162, 26), #444444a9 60%),
+	url("https://i.imgur.com/VeQJzgz.png");
+	transition: ease 5s; 
+	background-size: 100%;*/
+	--myBegin2: var(--end2);
+	--myTransp: var(--endTransp);
+	--mySize: 105%
 }
 .course-card.advanced:hover {
-	background: linear-gradient(390deg, rgb(192, 16, 16), #444444a9 60%),
+	/* background: linear-gradient(390deg, rgb(192, 16, 16), #444444a9 60%),
 	url("https://i.imgur.com/B5ecc76.jpeg");
-	transition: ease 5s;
-	background-size: 100%;
+	transition: ease 5s; 
+	background-size: 100%;*/
+	--myBegin3: var(--end3);
+	--myTransp: var(--endTransp);
+	--mySize: 105%
 }
 
 .course-card-flex {
