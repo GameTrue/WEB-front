@@ -410,10 +410,14 @@ footer {
 	color: var(--color-grey-dark);
 	background-color: var(--color-grey-light);
 	border: none;
+    transition: ease 0.5s;
 }
 
 .filter-column form select:hover {
-	filter: brightness(95%);
+	/*filter: brightness(95%);*/
+    background-color: var(--color-purple);
+    transition: ease 0.5s;
+    color: var(--color-text-light);
 }
 
 .filter-column form select option::before {
