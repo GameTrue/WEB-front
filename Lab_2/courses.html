@@ -14,6 +14,7 @@
     <link rel="stylesheet" href="media.css">
 	<script type="text/javascript" src="./js/templateLoader.js"></script>
 	<script type="text/javascript" src="./js/courses.js"></script>
+	<script type="text/javascript" src="./js/loading.js"></script>
 </head>
 <body>
 
@@ -86,8 +87,8 @@
 
 	<!-- JavaScript для обработки формы -->
     <script>
-        const form = document.getElementById('filter-form');
-        const submitBtn = document.getElementById('submit-btn');
+        const form = document.getElementById('filter-form-panel');
+        const submitBtn = document.getElementById('filter-btn');
 
         submitBtn.addEventListener('click', function() {
             const category = document.getElementById('category').value;

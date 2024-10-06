@@ -48,9 +48,24 @@ document.addEventListener('DOMContentLoaded', function () {
 	// Функция для добавления курса на страницу
 	function addCourseToPage(course) {
 		const courseCard = document.createElement('div');
+		const courseCardFlex = document.createElement('div');
+		const courseCardName = document.createElement('span');
+		const courseCardAuthor = document.createElement('span');
+
+		courseCardName.classList.add('course-card-name');
+		courseCardName.textContent = course.name;
+		courseCardAuthor.classList.add('course-card-author');
+		courseCardAuthor.textContent = "Name Surname";
+
 		courseCard.classList.add('course-card');
 		courseCard.classList.add(`${course.level}`);
-		courseCard.textContent = `${course.name}`;
+
+		courseCardFlex.classList.add('course-card-flex')
+
+		
+		courseCardFlex.appendChild(courseCardName);
+		courseCardFlex.appendChild(courseCardAuthor);
+		courseCard.appendChild(courseCardFlex);
 		coursesGrid.appendChild(courseCard);
 	}
 
