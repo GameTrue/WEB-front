@@ -12,7 +12,8 @@
 	<link href="https://fonts.googleapis.com/css2?family=Gabarito:wght@400..900&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="styles.css">
     <link rel="stylesheet" href="media.css">
-	<script type="text/javascript" src="./templateLoader.js"></script>
+	<script type="text/javascript" src="./js/templateLoader.js"></script>
+	<script type="text/javascript" src="./js/courses.js"></script>
 </head>
 <body>
 
@@ -21,40 +22,59 @@
 
     <main>
         <div class="container">
-            <aside class="filter-column">
-                <h2>Фильтры</h2>
-                <form action="#" method="get">
-                    <label for="category">Категория:</label>
-                    <select id="category" name="category">
-                        <option value="all">Все</option>
-                        <option value="programming">Программирование</option>
-                        <option value="design">Дизайн</option>
-                        <option value="marketing">Маркетинг</option>
-                    </select>
+			<div style="flex: 1;">
+				<aside class="filter-column" id="filter-form-panel">
+					<h2>Фильтры</h2>
+					<form id='filter-course-form' action="#" method="get">
+						<label for="category">Категория:</label>
+						<select id="category" name="category">
+							<option value="all">Все</option>
+							<option value="programming">Программирование</option>
+							<option value="design">Дизайн</option>
+							<option value="marketing">Маркетинг</option>
+						</select>
 
-                    <label for="level">Уровень:</label>
-                    <select id="level" name="level">
-                        <option value="all">Все</option>
-                        <option value="beginner">Начинающий</option>
-                        <option value="intermediate">Средний</option>
-                        <option value="advanced">Продвинутый</option>
-                    </select>
-                </form>
+						<label for="level">Уровень:</label>
+						<select id="level" name="level">
+							<option value="all">Все</option>
+							<option value="beginner">Начинающий</option>
+							<option value="intermediate">Средний</option>
+							<option value="advanced">Продвинутый</option>
+						</select>
+					</form>
 
-				<button type="submit" class="filter-button" id="submit-btn">Применить</button>
-            </aside>
+					<button type="submit" class="filter-button" id="filter-btn">Применить</button>
+				</aside>
+
+				<aside class="filter-column admin-panel" id="filter-admin-panel">
+					<h2>Добавить</h2>
+					<form id="add-course-form" action="#" method="post">
+						<label for="course-name">Название:</label>
+						<input id="course-name" name="course-name">
+
+						<label for="course-level">Уровень:</label>
+						<select id="course-level" name="course-level">
+							<option value="beginner">Начинающий</option>
+							<option value="intermediate">Средний</option>
+							<option value="advanced">Продвинутый</option>
+						</select>
+					</form>
+
+					<button type="button" class="filter-button" id="submit-btn-admin">Применить</button>
+				</aside>
+				<div style="
+							display: flex;
+							justify-content: center;
+							max-width: 300px;
+						">
+					<button type="button" class="admin-button" id="panel-btn-admin">Админ панель</button>
+				</div>
+			</div>
+			
 
             <section class="courses">
                 <h2>Курсы</h2>
-				<div class="courses-grid">
-					<div class="course-card">Course 1</div>
-					<div class="course-card">Course 2</div>
-					<div class="course-card">Course 3</div>
-					<div class="course-card">Course 4</div>
-					<div class="course-card">Course 5</div>
-					<div class="course-card">Course 6</div>
-					<div class="course-card">Course 7</div>
-					<div class="course-card">Course 8</div>
+				<div class="courses-grid" id="courses-grid">
 				</div>
             </section>
         </div>
@@ -77,6 +97,5 @@
             console.log('Выбранный уровень:', level);
         });
     </script>
-
 </body>
 </html>

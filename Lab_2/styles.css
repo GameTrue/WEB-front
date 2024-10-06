@@ -339,6 +339,7 @@ footer {
     align-items: center;
     color: var(--color-text-dark);
     filter: drop-shadow(6px 7px 10px);
+	margin-bottom: 45px;
 }
 
 .filter-column h2 {
@@ -350,6 +351,10 @@ footer {
     margin: 10px 0 5px;
 }
 
+.filter-column.admin-panel {
+	display: none;
+}
+
 .filter-button {
 	color: var(--color-grey-dark);
 	background-color: var(--color-media-bg);
@@ -357,13 +362,36 @@ footer {
 	margin: 20px auto auto auto;
 	width: 80%;
 	min-width: 120px;
+	transition: ease 0.5s;
 }
 
 .filter-button:hover {
-	background-color: var(--color-grey-light);
+	background-color: var(--color-purple);
+	transition: ease 0.5s;
+	color: var(--color-text-light);
 }
 
 .filter-button:active {
+	filter: brightness(80%);
+}
+
+.admin-button {
+	color: var(--color-grey-dark);
+	background-color: var(--color-media-bg);
+	border-radius: 20px;
+	margin: auto auto auto 10%;
+	width: 80%;
+	min-width: 120px;
+	transition: ease 0.5s;
+}
+
+.admin-button:hover {
+	background-color: var(--color-purple);
+	transition: ease 0.5s;
+	color: var(--color-text-light);
+}
+
+.admin-button:active {
 	filter: brightness(80%);
 }
 
@@ -373,7 +401,7 @@ footer {
 	color: var(--color-media-text);
 }
 
-.filter-column form select {
+.filter-column form select,  .filter-column form input{
     width: 100%;
 	min-width: 160px;
     padding: 10px;
@@ -421,6 +449,18 @@ footer {
     text-align: center;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
 	cursor: pointer;
+}
+
+.course-card.beginner {
+	background: linear-gradient(390deg, green, #444 60%);
+}
+
+.course-card.intermediate {
+	background: linear-gradient(390deg, rgb(170, 125, 27), #444 60%);
+}
+
+.course-card.advanced {
+	background: linear-gradient(390deg, rgb(152, 16, 16), #444 60%);
 }
 
 .swiper {
