@@ -179,6 +179,7 @@ button {
     background-color: var(--color-background-light);
     color: var(--color-text-dark);
     text-align: center;
+	min-width: 0;
 }
 
 .main-media-section h2 {
@@ -223,6 +224,7 @@ button {
 	height: 300px;
 	text-transform: capitalize;
     filter: drop-shadow(6px 7px 12px);
+	overflow: hidden;
 }
 
 .main-media-box h3 {
@@ -233,6 +235,8 @@ button {
     color: var(--color-media-text);
 	font-size: 1rem;
 	font-weight: 700;
+	overflow: hidden;
+    max-height: 200px;
 }
 
 .main-media-links {
@@ -419,3 +423,19 @@ footer {
 	cursor: pointer;
 }
 
+.swiper {
+  width: 100%;
+  height: 400px;
+  min-width: 600px;
+  max-width: 95vw; 
+  overflow: hidden;
+}
+
+.swiper-button-prev::after,
+.swiper-button-next::after {
+	color: var(--color-grey-dark);
+}
+
+.swiper-pagination-bullet {
+	background: #000;
+}
