@@ -51,9 +51,15 @@ document.addEventListener('DOMContentLoaded', function () {
 		const courseCardFlex = document.createElement('div');
 		const courseCardName = document.createElement('span');
 		const courseCardAuthor = document.createElement('span');
+		const courseCardInputName = document.createElement('input')
+
 
 		courseCardName.classList.add('course-card-name');
 		courseCardName.textContent = course.name;
+		courseCardInputName.setAttribute('type', 'text');
+		courseCardInputName.classList.add('course-card-input');
+		courseCardInputName.value = course.name;
+		courseCardInputName.setAttribute('placeholder', 'Введите текст...');
 		courseCardAuthor.classList.add('course-card-author');
 		courseCardAuthor.textContent = "Name Surname";
 
@@ -64,6 +70,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
 		
 		courseCardFlex.appendChild(courseCardName);
+		courseCardFlex.appendChild(courseCardInputName);
 		courseCardFlex.appendChild(courseCardAuthor);
 		courseCard.appendChild(courseCardFlex);
 		coursesGrid.appendChild(courseCard);

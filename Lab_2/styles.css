@@ -563,11 +563,27 @@ footer {
 
 .course-card-name {
     font-weight: 500;
+	cursor: pointer;
 }
 
 .course-card-author {
 	font-weight: 100;
     color: #b7b7b7;
+}
+
+.course-card-input {
+	display: none;
+	background-color: #0000;
+    border: none;
+    color: #FFF;
+    font-size: 1rem;
+    font-weight: 500;
+    font-family: "Gabarito", sans-serif;
+}
+
+.course-card-input:active, .course-card-input:focus-visible, .course-card-input:focus {
+	border-color: transparent;
+	border: none;
 }
 
 .swiper {
