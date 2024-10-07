@@ -415,7 +415,7 @@ footer {
 	filter: brightness(80%);
 }
 
-.admin-button {
+.admin-button, .admin-button-edit {
 	color: var(--color-grey-dark);
 	background-color: var(--color-media-bg);
 	border-radius: 20px;
@@ -425,14 +425,18 @@ footer {
 	transition: ease 0.5s;
 }
 
-.admin-button:hover {
+.admin-button:hover, .admin-button-edit:hover {
 	background-color: var(--color-purple);
 	transition: ease 0.5s;
 	color: var(--color-text-light);
 }
 
-.admin-button:active {
+.admin-button:active, .admin-button-edit:active {
 	filter: brightness(80%);
+}
+
+.admin-button-edit {
+	display: none;
 }
 
 .filter-column form {
@@ -562,6 +566,7 @@ footer {
 }
 
 .course-card-name {
+	display: none;
     font-weight: 500;
 	cursor: pointer;
 }
@@ -572,13 +577,14 @@ footer {
 }
 
 .course-card-input {
-	display: none;
+	/*display: none;*/
 	background-color: #0000;
     border: none;
     color: #FFF;
     font-size: 1rem;
     font-weight: 500;
     font-family: "Gabarito", sans-serif;
+	pointer-events: none;
 }
 
 .course-card-input:active, .course-card-input:focus-visible, .course-card-input:focus {
