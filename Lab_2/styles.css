@@ -575,10 +575,6 @@ footer {
 	cursor: pointer;
 }
 
-.course-card-author {
-	font-weight: 100;
-    color: #b7b7b7;
-}
 
 .course-card-input {
 	/*display: none;*/
@@ -594,6 +590,15 @@ footer {
 .course-card-input:active, .course-card-input:focus-visible, .course-card-input:focus {
 	border-color: transparent;
 	border: none;
+}
+
+span.course-card-author {
+	display: none;
+}
+
+.course-card-author {
+	font-weight: 100;
+    color: #b7b7b7;
 }
 
 .swiper {
