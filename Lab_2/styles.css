@@ -437,6 +437,10 @@ footer {
 
 .admin-button-edit {
 	display: none;
+	margin: auto 10% auto auto;
+	width: 20%;
+	min-width: 150px;
+	max-width: 220px;
 }
 
 .filter-column form {
