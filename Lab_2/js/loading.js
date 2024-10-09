@@ -1,10 +1,14 @@
 // Скрипт для получения и вывода данных о производительности
 
+
 (function() {
 	window.addEventListener('load', function() {
 		const timing = performance.timing;
 
-		const pageLoadTime = timing.loadEventEnd - timing.loadEventStart; // Время полной загрузки страницы
+		//console.log(timing);
+
+
+		const pageLoadTime = timing.domComplete - timing.navigationStart; // Время полной загрузки страницы
 		const domContentLoadedTime = timing.domContentLoadedEventEnd - timing.domContentLoadedEventStart; // Время до DOMContentLoaded
 		const responseTime = timing.responseEnd - timing.requestStart; // Время отклика сервера
 		const connectTime = timing.connectEnd - timing.connectStart; // Время установки соединения

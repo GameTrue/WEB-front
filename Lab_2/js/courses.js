@@ -9,9 +9,17 @@ document.addEventListener('DOMContentLoaded', function () {
 	const editBtnAdmin = document.getElementById('edit-btn-admin');
 	let inputActive = 0;
 
+	const preloader = document.getElementById('preloader');
+	const userInfo = document.getElementById('user-info');
+	const errorMessage = document.getElementById('error-message');
+
+
+	
+	
 	// Загружаем курсы из localStorage при загрузке страницы
-	defaultCourses();
-	loadCoursesFromStorage();
+	defaultCourses().then(loadCoursesFromStorage());
+	// Вызываем функцию фильтрации при необходимости
+	loadComments();
 
 	// Обработчик нажатия на кнопку "Добавить курс"
 	submitBtnAdmin.addEventListener('click', function () {
@@ -168,19 +176,64 @@ document.addEventListener('DOMContentLoaded', function () {
 
 	function defaultCourses() {
 		const courses = JSON.parse(localStorage.getItem('courses')) || [];
-		if (courses.length == 0) {
-			const template = [{ id: 1, name: "Course 1", level: "beginner", author: "Name Surname", category: "programming" }, 
-				{ id: 2, name: "Course 2", level: "intermediate", author: "Name Surname", category: "programming" }, 
-				{ id: 3, name: "Course 3", level: "advanced", author: "Name Surname", category: "design" }, 
-				{ id: 4, name: "Course 4", level: "advanced", author: "Name Surname", category: "programming" }, 
-				{ id: 5, name: "Course 5", level: "intermediate", author: "Name Surname", category: "marketing" }, 
-				{ id: 6, name: "Course 6", level: "beginner", author: "Name Surname", category: "marketing" }, 
-				{ id: 7, name: "Course 7", level: "beginner", author: "Name Surname", category: "marketing" }, 
-				{ id: 8, name: "Course 8", level: "intermediate", author: "Name Surname", category: "design" }, ];
-			template.forEach(course => {
-				courses.push(course);
+		preloader.style.display = 'block'; // Показываем preloader
+		preloader.style.display = 'block'; // Показываем preloader
+		fetch('https://jsonplaceholder.typicode.com/users') // Получаем данные пользователя с ID 1
+			.then(response => {
+				if (!response.ok) {
+					throw new Error('Ошибка сети');
+				}
+				return response.json(); // Парсим ответ как JSON
 			})
-			localStorage.setItem('courses', JSON.stringify(courses));
-		}
+			.then(data => {
+				if (courses.length == 0) {
+					// Загружаем пользователя при загрузке страницы
+					const template = [{ id: 1, name: "Course 1", level: "beginner", author: data[0].name, category: "programming" }, 
+						{ id: 2, name: "Course 2", level: "intermediate", author: data[1].name, category: "programming" }, 
+						{ id: 3, name: "Course 3", level: "advanced", author: data[2].name, category: "design" }, 
+						{ id: 4, name: "Course 4", level: "advanced", author: data[3].name, category: "programming" }, 
+						{ id: 5, name: "Course 5", level: "intermediate", author: data[4].name, category: "marketing" }, 
+						{ id: 6, name: "Course 6", level: "beginner", author: data[5].name, category: "marketing" }, 
+						{ id: 7, name: "Course 7", level: "beginner", author: data[6].name, category: "marketing" }, 
+						{ id: 8, name: "Course 8", level: "intermediate", author: data[7].name, category: "design" }, ];
+					template.forEach(course => {
+						courses.push(course);
+					})
+					localStorage.setItem('courses', JSON.stringify(courses));
+				}
+
+				preloader.style.display = 'none'; // Скрываем preloader
+				coursesGrid.style.display = 'grid';
+				loadCoursesFromStorage();
+				loadComments();
+			})
+			.catch(error => {
+				preloader.style.display = 'none';
+				errorMessage.textContent = '⚠ Что-то пошло не так: ' + error.message; // Обрабатываем ошибку
+			});
 	}
+
+	
+	// Функция для загрузки данных о пользователе
+	function loadUser() {
+		
+	}
+
+	function loadComments() {
+		//preloader.style.display = 'block';
+		const randomFilter = Math.random() > 0.5 ? '?id_gte=100' : '?id_lte=200';
+	
+		fetch(`https://jsonplaceholder.typicode.com/comments${randomFilter}`)
+			.then(response => response.json())
+			.then(data => {
+				//preloader.style.display = 'none';
+				console.log('Комментарии:', data);
+				// Логика для отображения комментариев
+			})
+			.catch(error => {
+				//preloader.style.display = 'none';
+				errorMessage.textContent = '⚠ Что-то пошло не так: ' + error.message;
+			});
+	}
+	
 });
