@@ -17,9 +17,7 @@ document.addEventListener('DOMContentLoaded', function () {
 	
 	
 	// Загружаем курсы из localStorage при загрузке страницы
-	defaultCourses().then(loadCoursesFromStorage());
-	// Вызываем функцию фильтрации при необходимости
-	loadComments();
+	defaultCourses()
 
 	// Обработчик нажатия на кнопку "Добавить курс"
 	submitBtnAdmin.addEventListener('click', function () {
@@ -177,7 +175,7 @@ document.addEventListener('DOMContentLoaded', function () {
 	function defaultCourses() {
 		const courses = JSON.parse(localStorage.getItem('courses')) || [];
 		preloader.style.display = 'block'; // Показываем preloader
-		preloader.style.display = 'block'; // Показываем preloader
+		
 		fetch('https://jsonplaceholder.typicode.com/users') // Получаем данные пользователя с ID 1
 			.then(response => {
 				if (!response.ok) {
@@ -195,7 +193,8 @@ document.addEventListener('DOMContentLoaded', function () {
 						{ id: 5, name: "Course 5", level: "intermediate", author: data[4].name, category: "marketing" }, 
 						{ id: 6, name: "Course 6", level: "beginner", author: data[5].name, category: "marketing" }, 
 						{ id: 7, name: "Course 7", level: "beginner", author: data[6].name, category: "marketing" }, 
-						{ id: 8, name: "Course 8", level: "intermediate", author: data[7].name, category: "design" }, ];
+						{ id: 8, name: "Course 8", level: "intermediate", author: data[7].name, category: "design" }
+					];
 					template.forEach(course => {
 						courses.push(course);
 					})
