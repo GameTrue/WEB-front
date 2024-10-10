@@ -104,4 +104,8 @@
 	.course-card-input {
 		font-size: 0.8rem;
 	}
+
+	section table {
+		font-size: 0.7rem;
+	}
 }
