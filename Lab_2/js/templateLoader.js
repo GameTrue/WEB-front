@@ -17,15 +17,18 @@ loadFragment('footer-placeholder', 'footer.html');
 
 // Функция для установки класса active-link на активную страницу
 function setActiveLink() {
-	const path = window.location.pathname;
-	// Извлекаем последний элемент пути (название страницы)
-	const page = path.substring(path.lastIndexOf('/') + 1);
-	const menuItems = document.querySelectorAll('nav a');
+	const currentPath = window.location.pathname;
+    const menuItems = document.querySelectorAll('nav li');
 
-	menuItems.forEach(link => {
-		console.log(link.getAttribute('href'), path)
-		if (link.getAttribute('href') === page) {
-			link.querySelector('li').classList.add('active-link');
-		}
-	});
+    menuItems.forEach(link => {
+        const linkPath = new URL(link.querySelector('a').href).pathname; 
+
+		console.log(linkPath, currentPath);
+        if (linkPath === currentPath) {
+            link.classList.add('active-link');
+        } else {
+            link.classList.remove('active-link'); 
+        }
+    });
 }
+	
