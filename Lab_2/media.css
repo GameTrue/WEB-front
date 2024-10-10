@@ -3,6 +3,16 @@
 }
 
 @media (max-width : 630px) {
+	/*#menu {
+		display: none;
+		flex-direction: column;
+		width: 100%;
+	}
+
+	#menu.active {
+		display: flex;
+	  }*/
+
 	nav {
 		margin: auto 10px auto auto;
 	}
