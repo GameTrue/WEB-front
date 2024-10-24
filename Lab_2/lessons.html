@@ -13,51 +13,57 @@
     <link rel="stylesheet" href="styles.css">
     <link rel="stylesheet" href="media.css">
 	<script src="./js/templateLoader.js"></script>
-	<script src="./js/loading.js"></script>
 
 
 	<style>
         table {
-            width: 100%;
-            border-collapse: collapse;
-            margin-top: 20px;
-        }
+			display: grid;
+			width: 100%;
+			border-collapse: collapse;
+			grid-template-columns: repeat(5, 1fr); /* Сетка для 5 колонок */
+			overflow-x: auto; /* Если колонок много, разрешаем прокрутку */
+		}
 
-        th, td {
-            padding: 10px;
-            text-align: left;
-            border: 1px solid #ddd;
-        }
+		thead {
+			display: contents; /* Чтобы заголовок и тело были частью одной сетки */
+		}
 
-        th {
-            background-color: #4472C4;
-            color: white;
-        }
+		tbody {
+			display: contents;
+		}
 
-        tr:nth-child(even) {
-            background-color: #e9e9e9;
+		th, td {
+			padding: 10px;
+			text-align: left;
+			border: 1px solid #ddd;
+		}
+
+		th {
+			background-color: #4472C4;
+			color: white;
+		}
+
+		tr {
+			display: contents; /* Обеспечивает правильное поведение строк в сетке */
+		}
+
+		tr:hover {
+			filter: brightness(70%);
+		}
+
+		tr:nth-child(even) td {
+			background-color: #e9e9e9;
 			color: #111;
-            font-weight: bold;
-        }
+			font-weight: bold;
+		}
 
-        tr:hover {
-            filter: brightness(70%);
-        }
+		caption {
+			caption-side: top;
+			font-size: 1.5em;
+			font-weight: bold;
+			margin-bottom: 10px;
+		}
 
-        caption {
-            caption-side: top;
-            font-size: 1.5em;
-            font-weight: bold;
-            margin-bottom: 10px;
-        }
-
-        /* Адаптивность */
-        @media (max-width: 768px) {
-            table {
-                display: block;
-                overflow-x: auto;
-            }
-        }
     </style>
 </head>
 <body>
@@ -67,8 +73,8 @@
 
     <main>
         <section style="padding: 30px;">
+			<caption>Yearly Income Statements 2009 - 2012</caption>
             <table>
-                <caption>Yearly Income Statements 2009 - 2012</caption>
                 <thead>
                     <tr>
                         <th>In Millions of USD (except for per share items)</th>

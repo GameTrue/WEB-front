@@ -1,34 +1,73 @@
 // JavaScript для подгрузки шаблонов и динамического добавления active-link
-
-function loadFragment(fragmentId, url, callback) {
-	fetch(url)
-		.then(response => response.text())
-		.then(data => {
-			document.getElementById(fragmentId).innerHTML = data;
-			if (callback) callback(); // Вызов callback после загрузки
-		})
-		.catch(error => console.error('Ошибка загрузки фрагмента:', error));
-}
-
-// Подгрузка header и footer
-loadFragment('header-placeholder', 'header.html', setActiveLink);
-loadFragment('footer-placeholder', 'footer.html');
-
-
-// Функция для установки класса active-link на активную страницу
-function setActiveLink() {
-	const currentPath = window.location.pathname;
-    const menuItems = document.querySelectorAll('nav li');
-
-    menuItems.forEach(link => {
-        const linkPath = new URL(link.querySelector('a').href).pathname; 
-
-		console.log(linkPath, currentPath);
-        if (linkPath === currentPath) {
-            link.classList.add('active-link');
-        } else {
-            link.classList.remove('active-link'); 
+(function() {
+	window.addEventListener('load', function() {
+		 // Функция для загрузки фрагментов с Promise
+        function loadFragment(fragmentId, url) {
+            return new Promise((resolve, reject) => {
+                fetch(url)
+                    .then(response => response.text())
+                    .then(data => {
+                        document.getElementById(fragmentId).innerHTML = data;
+                        resolve(); // Разрешаем promise после успешной загрузки
+                    })
+                    .catch(error => {
+                        console.error('Ошибка загрузки фрагмента:', error);
+                        reject(error); // Отклоняем promise в случае ошибки
+                    });
+            });
         }
-    });
-}
-	
+
+        // Подгрузка header и footer
+        Promise.all([
+            loadFragment('header-placeholder', 'header.html').then(setActiveLink), // загружаем header и затем вызываем setActiveLink
+            loadFragment('footer-placeholder', 'footer.html') // загружаем footer
+        ]).then(() => {
+            // Все фрагменты загружены, вызываем loadingTime
+            loadingTime();
+        }).catch(error => {
+            console.error('Ошибка загрузки одного из фрагментов:', error);
+        });
+
+
+		// Функция для установки класса active-link на активную страницу
+		function setActiveLink() {
+			const currentPath = window.location.pathname;
+			const menuItems = document.querySelectorAll('nav li');
+
+			menuItems.forEach(link => {
+				const linkPath = new URL(link.querySelector('a').href).pathname; 
+
+				console.log(linkPath, currentPath);
+				if (linkPath === currentPath) {
+					link.classList.add('active-link');
+				} else {
+					link.classList.remove('active-link'); 
+				}
+			});
+		}
+
+		function loadingTime() {
+			const timing = performance.timing;
+
+			//console.log(timing);
+
+
+			const pageLoadTime = timing.domComplete - timing.navigationStart; // Время полной загрузки страницы
+			const domContentLoadedTime = timing.domContentLoadedEventEnd - timing.domContentLoadedEventStart; // Время до DOMContentLoaded
+			const responseTime = timing.responseEnd - timing.requestStart; // Время отклика сервера
+			const connectTime = timing.connectEnd - timing.connectStart; // Время установки соединения
+			const dnsTime = timing.domainLookupEnd - timing.domainLookupStart; // Время разрешения DNS
+
+			const stats = `
+				<p>Полное время загрузки страницы: <strong>${pageLoadTime} мс</strong></p>
+				<p>Время до события DOMContentLoaded: <strong>${domContentLoadedTime} мс</strong></p>
+				<p>Время отклика сервера: <strong>${responseTime} мс</strong></p>
+				<p>Время установки соединения: <strong>${connectTime} мс</strong></p>
+				<p>Время разрешения DNS: <strong>${dnsTime} мс</strong></p>
+			`;
+
+			const performanceDiv = document.getElementById('performance-info');
+			performanceDiv.innerHTML += stats;
+		}
+	});
+})();
