@@ -1,7 +1,6 @@
 // JavaScript для подгрузки шаблонов и динамического добавления active-link
 (function() {
 	window.addEventListener('load', function() {
-		 // Функция для загрузки фрагментов с Promise
         function loadFragment(fragmentId, url) {
             return new Promise((resolve, reject) => {
                 fetch(url)
@@ -19,10 +18,9 @@
 
         // Подгрузка header и footer
         Promise.all([
-            loadFragment('header-placeholder', 'header.html').then(setActiveLink), // загружаем header и затем вызываем setActiveLink
-            loadFragment('footer-placeholder', 'footer.html') // загружаем footer
+            loadFragment('header-placeholder', 'header.html').then(setActiveLink),
+            loadFragment('footer-placeholder', 'footer.html') 
         ]).then(() => {
-            // Все фрагменты загружены, вызываем loadingTime
             loadingTime();
         }).catch(error => {
             console.error('Ошибка загрузки одного из фрагментов:', error);

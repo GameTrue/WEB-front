@@ -61,6 +61,8 @@ document.addEventListener('DOMContentLoaded', function () {
 		loadCoursesFromStorage({level: courseLevel, category: courseCategory});
 	});
 
+	
+	// Функция для обновления полей редактирования
 	function updateCourseField(courses, inputs, field) {
 		inputs.forEach((element) => {
 			const elementVal = element.value;
@@ -70,6 +72,7 @@ document.addEventListener('DOMContentLoaded', function () {
 		});
 	}
 
+	// Функция для редактирования курсов
 	editBtnAdmin.addEventListener('click', function () {
 		const inputs = document.getElementsByName("course-card-name");
 		const inputAuthors = document.getElementsByName("course-card-author");
@@ -84,7 +87,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
 			updateCourseField(courses, inputs, 'name');
 			updateCourseField(courses, inputAuthors, 'author');
-			
+
 			localStorage.setItem('courses', JSON.stringify(courses));
 			editBtnAdmin.textContent = 'Редактировать';
 		}
