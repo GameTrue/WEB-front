@@ -29,24 +29,21 @@ document.addEventListener('DOMContentLoaded', function () {
 		const courseCategory = addCourseForm['course-category'].value.trim();
 		const courseLevel = addCourseForm['course-level'].value;
 
-		if (courseName !== '') {
-			const newCourse = { id: courseId,
-				 name: courseName,
-				  level: courseLevel,
-				   author: courseAuthor,
-				    category: courseCategory };
-
-			// Добавляем курс на страницу
-			addCourseToPage(newCourse);
-
-			// Сохраняем курс в localStorage
-			saveCourseToStorage(newCourse);
-
-			// Очищаем форму после добавления курса
-			addCourseForm.reset();
-		} else {
-			alert('Введите название курса');
+		if (!courseName || !courseAuthor || !courseCategory || !courseLevel) {
+			alert('Пожалуйста, заполните все поля');
+			return;
 		}
+		
+		const newCourse = { id: courseId, name: courseName, author: courseAuthor, category: courseCategory, level: courseLevel };
+  
+		// Добавляем курс на страницу
+		addCourseToPage(newCourse);
+
+		// Сохраняем курс в localStorage
+		saveCourseToStorage(newCourse);
+
+		// Очищаем форму после добавления курса
+		addCourseForm.reset();
 	});
 
 	// Обработчик нажатия на кнопку "Админ панель"
@@ -64,51 +61,34 @@ document.addEventListener('DOMContentLoaded', function () {
 		loadCoursesFromStorage({level: courseLevel, category: courseCategory});
 	});
 
+	function updateCourseField(courses, inputs, field) {
+		inputs.forEach((element) => {
+			const elementVal = element.value;
+			const elementId = parseInt(element.id.match(/\d+$/)[0], 10);
+			courses[elementId - 1][field] = elementVal;
+			element.style.pointerEvents = 'none';
+		});
+	}
+
 	editBtnAdmin.addEventListener('click', function () {
 		const inputs = document.getElementsByName("course-card-name");
 		const inputAuthors = document.getElementsByName("course-card-author");
 
 		if (inputActive == 0) {
-			inputs.forEach(element => {
-				element.style.pointerEvents = "auto";
-			});
-			
-			inputAuthors.forEach(element => {
-				element.style.pointerEvents = "auto";
-			});
+			inputs.forEach(el => (el.style.pointerEvents = 'auto'));
+			inputAuthors.forEach(el => (el.style.pointerEvents = 'auto'));
 	
 			editBtnAdmin.textContent = "Сохранить";
-
-			inputActive = 1 - inputActive;
-		}
-		else {
+		} else {
 			const courses = JSON.parse(localStorage.getItem('courses')) || [];
-			console.log(courses);
 
-			inputs.forEach((element, index) => {
-				const elementVal = element.value;
-				const elementIds = element.id;
-				element.style.pointerEvents = "none";
-				const digits = elementIds.match(/\d+$/);
-				const elementId = digits ? parseInt(digits[0], 10) : null;;
-				courses[elementId - 1]["name"]  = elementVal;
-			});
+			updateCourseField(courses, inputs, 'name');
+			updateCourseField(courses, inputAuthors, 'author');
 			
-			inputAuthors.forEach((element, index) => {
-				const elementVal = element.value;
-				const elementIds = element.id;
-				element.style.pointerEvents = "none";
-				const digits = elementIds.match(/\d+$/);
-				const elementId = digits ? parseInt(digits[0], 10) : null;;
-				courses[elementId - 1]["author"]  = elementVal;
-			});
-
-			editBtnAdmin.textContent = "Редактировать";
-
 			localStorage.setItem('courses', JSON.stringify(courses));
-
-			inputActive = 1 - inputActive;
+			editBtnAdmin.textContent = 'Редактировать';
 		}
+		inputActive = 1 - inputActive;
 	});
 
 	// Функция для создания элемента с атрибутами
@@ -162,12 +142,15 @@ document.addEventListener('DOMContentLoaded', function () {
 	}
 
 	// Функция для загрузки курсов из localStorage
-	function loadCoursesFromStorage(filterr={level: "all", category: "all"}) {
+	function loadCoursesFromStorage(filters={level: "all", category: "all"}) {
 		const courses = JSON.parse(localStorage.getItem('courses')) || [];
-		courses.forEach(course => {
-			if ((course.level == filterr.level || filterr.level == "all") && (course.category == filterr.category || filterr.category == "all"))
-				addCourseToPage(course);
-		});
+
+		courses
+			.filter(course => 
+				(filters.level === 'all' || course.level === filters.level) &&
+				(filters.category === 'all' || course.category === filters.category)
+			)
+			.forEach(addCourseToPage);
 	}
 
 	function defaultCourses() {
