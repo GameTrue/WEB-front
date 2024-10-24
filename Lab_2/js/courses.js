@@ -111,50 +111,48 @@ document.addEventListener('DOMContentLoaded', function () {
 		}
 	});
 
+	// Функция для создания элемента с атрибутами
+	function createElement(tag, attributes = {}, classes = [], textContent = '') {
+		const element = document.createElement(tag);
+		Object.keys(attributes).forEach(key => element.setAttribute(key, attributes[key]));
+		if (classes.length) element.classList.add(...classes);
+		if (textContent) element.textContent = textContent;
+		return element;
+	}
+
 	// Функция для добавления курса на страницу
 	function addCourseToPage(course) {
-		const courseCard = document.createElement('div');
-		const courseCardFlex = document.createElement('div');
-		const courseCardName = document.createElement('span');
-		const courseCardAuthor = document.createElement('span');
-		const courseCardInputName = document.createElement('input')
-		const courseCardInputAuthor = document.createElement('input')
-
-
-		courseCardName.classList.add('course-card-name');
-		courseCardName.textContent = course.name;
-
-		courseCardInputName.setAttribute('type', 'text');
-		courseCardInputName.classList.add('course-card-input');
-		courseCardInputName.id = `input-courses-${course.id}`;
-		courseCardInputName.value = course.name;
-		courseCardInputName.name = "course-card-name";
-		courseCardInputName.setAttribute('placeholder', 'Введите текст...');
-
-		courseCardAuthor.classList.add('course-card-author');
-		courseCardAuthor.textContent = course.author;
-
-		courseCardInputAuthor.setAttribute('type', 'text');
-		courseCardInputAuthor.classList.add('course-card-input');
-		courseCardInputAuthor.classList.add('course-card-author');
-		courseCardInputAuthor.id = `input-courses-author-${course.id}`;
-		courseCardInputAuthor.value = course.author;
-		courseCardInputAuthor.name = "course-card-author";
-		courseCardInputAuthor.setAttribute('placeholder', 'Введите текст...');
-
-		courseCard.classList.add('course-card');
-		courseCard.classList.add(`${course.level}`);
-
-		courseCardFlex.classList.add('course-card-flex')
-
+		const courseCard = createElement('div', {}, ['course-card', course.level]);
+		const courseCardFlex = createElement('div', {}, ['course-card-flex']);
 		
-		courseCardFlex.appendChild(courseCardName);
-		courseCardFlex.appendChild(courseCardInputName);
-		courseCardFlex.appendChild(courseCardAuthor);
-		courseCardFlex.appendChild(courseCardInputAuthor);
+		// Создание элементов для имени курса
+		const courseCardName = createElement('span', {}, ['course-card-name'], course.name);
+		const courseCardInputName = createElement('input', {
+			type: 'text',
+			id: `input-courses-${course.id}`,
+			name: 'course-card-name',
+			value: course.name,
+			placeholder: 'Введите текст...'
+		}, ['course-card-input']);
+		
+		// Создание элементов для автора курса
+		const courseCardAuthor = createElement('span', {}, ['course-card-author'], course.author);
+		const courseCardInputAuthor = createElement('input', {
+			type: 'text',
+			id: `input-courses-author-${course.id}`,
+			name: 'course-card-author',
+			value: course.author,
+			placeholder: 'Введите текст...'
+		}, ['course-card-input', 'course-card-author']);
+		
+		// Добавление элементов в контейнеры
+		courseCardFlex.append(courseCardName, courseCardInputName, courseCardAuthor, courseCardInputAuthor);
 		courseCard.appendChild(courseCardFlex);
+
+		// Добавление курса на страницу (например, в grid-контейнер)
 		coursesGrid.appendChild(courseCard);
 	}
+
 
 	// Функция для сохранения курса в localStorage
 	function saveCourseToStorage(course) {
