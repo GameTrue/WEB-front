@@ -51,7 +51,7 @@
 
 
 			const pageLoadTime = timing.domComplete - timing.navigationStart; // Время полной загрузки страницы
-			const domContentLoadedTime = timing.domContentLoadedEventEnd - timing.domLoading; // Время до DOMContentLoaded
+			const domContentLoadedTime = timing.domContentLoadedEventEnd - timing.navigationStart; // Время до DOMContentLoaded
 			const responseTime = timing.responseEnd - timing.requestStart; // Время отклика сервера
 			const connectTime = timing.connectEnd - timing.connectStart; // Время установки соединения
 			const dnsTime = timing.domainLookupEnd - timing.domainLookupStart; // Время разрешения DNS
