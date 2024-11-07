@@ -191,7 +191,8 @@ document.addEventListener('DOMContentLoaded', function () {
 				loadComments();
 			})
 			.catch(error => {
-				preloader.style.display = 'none';
+				preloader.textContent = '⚠ Что-то пошло не так: ' + error.message;
+				preloader.style.color = 'red';
 				errorMessage.textContent = '⚠ Что-то пошло не так: ' + error.message; // Обрабатываем ошибку
 			});
 	}
