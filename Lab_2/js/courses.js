@@ -8,6 +8,7 @@ document.addEventListener('DOMContentLoaded', function () {
 	const filterBtn = document.getElementById('filter-btn');
 	const editBtnAdmin = document.getElementById('edit-btn-admin');
 	let inputActive = 0;
+	const template = document.getElementById('course-template');
 
 	const preloader = document.getElementById('preloader');
 	const userInfo = document.getElementById('user-info');
@@ -105,37 +106,23 @@ document.addEventListener('DOMContentLoaded', function () {
 
 	// Функция для добавления курса на страницу
 	function addCourseToPage(course) {
-		const courseCard = createElement('div', {}, ['course-card', course.level]);
-		const courseCardFlex = createElement('div', {}, ['course-card-flex']);
-		
-		// Создание элементов для имени курса
-		const courseCardName = createElement('span', {}, ['course-card-name'], course.name);
-		const courseCardInputName = createElement('input', {
-			type: 'text',
-			id: `input-courses-${course.id}`,
-			name: 'course-card-name',
-			value: course.name,
-			placeholder: 'Введите текст...'
-		}, ['course-card-input']);
-		
-		// Создание элементов для автора курса
-		const courseCardAuthor = createElement('span', {}, ['course-card-author'], course.author);
-		const courseCardInputAuthor = createElement('input', {
-			type: 'text',
-			id: `input-courses-author-${course.id}`,
-			name: 'course-card-author',
-			value: course.author,
-			placeholder: 'Введите текст...'
-		}, ['course-card-input', 'course-card-author']);
-		
-		// Добавление элементов в контейнеры
-		courseCardFlex.append(courseCardName, courseCardInputName, courseCardAuthor, courseCardInputAuthor);
-		courseCard.appendChild(courseCardFlex);
-
-		// Добавление курса на страницу (например, в grid-контейнер)
-		coursesGrid.appendChild(courseCard);
+		const clone = template.content.cloneNode(true); 
+	  
+		const courseCard = clone.querySelector('.course-card');
+		courseCard.classList.add(course.level);
+	  
+		const courseNameInput = clone.querySelector('[name="course-card-name"]');
+		courseNameInput.value = course.name;
+		courseNameInput.id = `input-courses-${course.id}`;
+	  
+		const courseAuthorInput = clone.querySelector('[name="course-card-author"]');
+		courseAuthorInput.value = course.author;
+		courseAuthorInput.id = `input-courses-author-${course.id}`;
+	  
+		// Добавляем заполненный элемент в контейнер
+		coursesGrid.appendChild(clone);
 	}
-
+	  
 
 	// Функция для сохранения курса в localStorage
 	function saveCourseToStorage(course) {
@@ -153,7 +140,7 @@ document.addEventListener('DOMContentLoaded', function () {
 				(filters.level === 'all' || course.level === filters.level) &&
 				(filters.category === 'all' || course.category === filters.category)
 			)
-			.forEach(addCourseToPage);
+			.forEach(course => addCourseToPage(course));
 	}
 
 	function defaultCourses() {
